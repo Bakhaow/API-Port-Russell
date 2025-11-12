@@ -128,8 +128,8 @@ api/
 ### 📚 Milestone 5 : Documentation et versionnage
 
 - [ ] Documenter l'API (ex : Swagger)
-- [ ] Initialiser le dépôt GitHub, ajouter README, .gitignore
-- [ ] Valider la structure et pousser le code
+- [x] Initialiser le dépôt GitHub, ajouter README, .gitignore
+- [x] Valider la structure et pousser le code
 
 ### 🚢 Milestone 6 : Déploiement final
 
