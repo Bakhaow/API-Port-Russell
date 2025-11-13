@@ -86,6 +86,21 @@ npm start
 
 Le serveur sera accessible sur `http://localhost:3000`
 
+### Import des données initiales
+
+Après avoir configuré votre connexion MongoDB, vous pouvez importer les données initiales (catways et réservations) :
+
+```bash
+npm run import
+```
+
+Ce script va :
+- Importer tous les catways depuis `neededs/api/catways.json`
+- Importer toutes les réservations depuis `neededs/api/reservations.json`
+- Mettre à jour automatiquement la disponibilité des catways selon les réservations
+
+⚠️ **Note :** Le script supprime toutes les données existantes avant l'import. Si vous voulez conserver vos données, modifiez le script `scripts/importData.js`.
+
 ## 📁 Structure du projet
 
 ```
@@ -93,8 +108,9 @@ api/
 ├── config/          # Configuration (database, etc.)
 ├── controllers/     # Contrôleurs (logique métier)
 ├── middleware/      # Middlewares (auth, validation, etc.)
-├── models/          # Modèles Mongoose
+├── models/          # Modèles Mongoose (User, Catway, Reservation)
 ├── routes/          # Routes API
+├── scripts/         # Scripts utilitaires (import de données, etc.)
 ├── index.js         # Point d'entrée de l'application
 └── package.json     # Dépendances du projet
 ```
@@ -108,10 +124,10 @@ api/
 - [x] Ajouter les dépendances essentielles
 - [x] Préparer la structure de base du projet
 
-### 🔄 Milestone 2 : Modélisation et import des données
+### ✅ Milestone 2 : Modélisation et import des données
 
-- [ ] Créer les schémas Mongoose pour utilisateurs, catways, réservations
-- [ ] Importer les données initiales des catways et réservations dans MongoDB
+- [x] Créer les schémas Mongoose pour utilisateurs, catways, réservations
+- [x] Importer les données initiales des catways et réservations dans MongoDB
 
 ### 📋 Milestone 3 : API CRUD et authentification
 
