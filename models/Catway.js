@@ -32,7 +32,7 @@ const catwaySchema = new mongoose.Schema(
 );
 
 // Index pour améliorer les performances de recherche
-catwaySchema.index({ catwayNumber: 1 });
+// Note: catwayNumber a déjà un index unique créé automatiquement par unique: true
 catwaySchema.index({ isAvailable: 1 });
 
 module.exports = mongoose.model("Catway", catwaySchema);
