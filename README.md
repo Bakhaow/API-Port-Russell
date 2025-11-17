@@ -89,9 +89,9 @@ Le serveur sera accessible sur `http://localhost:3000`
 ### Interface Web
 
 Une fois le serveur démarré, vous pouvez accéder à l'interface web :
+
 - **Page d'accueil** : `http://localhost:3000/` - Connexion, inscription et documentation API
 - **Tableau de bord** : `http://localhost:3000/dashboard.html` - Gestion des catways et réservations (nécessite une connexion)
-- **Documentation Swagger** : `http://localhost:3000/api-docs` - Documentation interactive de l'API avec possibilité de tester les endpoints
 
 ### Import des données initiales
 
@@ -102,6 +102,7 @@ npm run import
 ```
 
 Ce script va :
+
 - Importer tous les catways depuis `neededs/api/catways.json`
 - Importer toutes les réservations depuis `neededs/api/reservations.json`
 - Mettre à jour automatiquement la disponibilité des catways selon les réservations
@@ -153,21 +154,22 @@ api/
 - [x] Développer le tableau de bord avec affichage des données et formulaires CRUD
 - [x] Ajouter la déconnexion
 
-### ✅ Milestone 5 : Documentation et versionnage
+### 📚 Milestone 5 : Documentation et versionnage
 
-- [x] Documenter l'API (ex : Swagger)
+- [ ] Documenter l'API (ex : Swagger)
 - [x] Initialiser le dépôt GitHub, ajouter README, .gitignore
 - [x] Valider la structure et pousser le code
 
-### 🚢 Milestone 6 : Déploiement final
+### ✅ Milestone 6 : Déploiement final
 
-- [ ] Préparer l'app pour le déploiement
-- [ ] Déployer sur plateforme (Heroku / autre)
-- [ ] Tester l'application en conditions réelles
+- [x] Préparer l'app pour le déploiement
+- [x] Déployer sur plateforme (Heroku / Railway / Render)
+- [x] Tester l'application en conditions réelles
 
 ## 📝 API Endpoints
 
 ### Auth & Utilisateurs
+
 - `POST /api/users/register` : créer un compte (nom, email, mot de passe)
 - `POST /api/users/login` : se connecter et recevoir un token JWT
 - `GET /api/users/me` : récupérer son profil (header `Authorization: Bearer <token>`)
@@ -176,6 +178,7 @@ api/
 - `DELETE /api/users/:id` : supprimer un utilisateur (admin)
 
 ### Catways
+
 - `GET /api/catways` : lister les catways (filtres `?type=short|long&available=true|false`)
 - `GET /api/catways/:catwayNumber` : consulter un catway précis
 - `POST /api/catways` : créer un catway (admin)
@@ -183,6 +186,7 @@ api/
 - `DELETE /api/catways/:catwayNumber` : supprimer un catway (admin)
 
 ### Réservations
+
 - `GET /api/reservations` : lister les réservations (toutes pour admin, personnelles sinon)
 - `GET /api/reservations/:id` : consulter une réservation
 - `POST /api/reservations` : créer une réservation (met à jour la dispo du catway)
@@ -200,6 +204,26 @@ api/
 ## 📄 License
 
 UNLICENSED - Course purpose only
+
+## 🚀 Déploiement
+
+Pour déployer l'application en production, consultez le guide complet : [DEPLOYMENT.md](./DEPLOYMENT.md)
+
+### Déploiement rapide
+
+1. **Heroku** :
+
+   ```bash
+   heroku create api-port-russell
+   heroku config:set MONGODB_URI="votre_uri" JWT_SECRET="votre_secret"
+   git push heroku main
+   ```
+
+2. **Railway** : Connectez votre dépôt GitHub et configurez les variables d'environnement
+
+3. **Render** : Créez un nouveau Web Service et connectez votre dépôt GitHub
+
+Voir [DEPLOYMENT.md](./DEPLOYMENT.md) pour les instructions détaillées.
 
 ## 👤 Auteur
 
