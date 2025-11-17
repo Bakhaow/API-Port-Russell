@@ -129,11 +129,11 @@ api/
 - [x] Créer les schémas Mongoose pour utilisateurs, catways, réservations
 - [x] Importer les données initiales des catways et réservations dans MongoDB
 
-### 📋 Milestone 3 : API CRUD et authentification
+### ✅ Milestone 3 : API CRUD et authentification
 
-- [ ] Implémenter les routes CRUD pour catways, réservations, utilisateurs
-- [ ] Mettre en place l'authentification JWT
-- [ ] Ajouter les middlewares de protection des routes
+- [x] Implémenter les routes CRUD pour catways, réservations, utilisateurs
+- [x] Mettre en place l'authentification JWT
+- [x] Ajouter les middlewares de protection des routes
 
 ### 🎨 Milestone 4 : Frontend simple
 
@@ -155,11 +155,35 @@ api/
 
 ## 📝 API Endpoints
 
-(Les endpoints seront documentés dans le Milestone 3)
+### Auth & Utilisateurs
+- `POST /api/users/register` : créer un compte (nom, email, mot de passe)
+- `POST /api/users/login` : se connecter et recevoir un token JWT
+- `GET /api/users/me` : récupérer son profil (header `Authorization: Bearer <token>`)
+- `GET /api/users` : lister tous les utilisateurs (admin)
+- `PUT /api/users/:id` : mettre à jour un utilisateur (admin)
+- `DELETE /api/users/:id` : supprimer un utilisateur (admin)
+
+### Catways
+- `GET /api/catways` : lister les catways (filtres `?type=short|long&available=true|false`)
+- `GET /api/catways/:catwayNumber` : consulter un catway précis
+- `POST /api/catways` : créer un catway (admin)
+- `PUT /api/catways/:catwayNumber` : mettre à jour un catway (admin)
+- `DELETE /api/catways/:catwayNumber` : supprimer un catway (admin)
+
+### Réservations
+- `GET /api/reservations` : lister les réservations (toutes pour admin, personnelles sinon)
+- `GET /api/reservations/:id` : consulter une réservation
+- `POST /api/reservations` : créer une réservation (met à jour la dispo du catway)
+- `PUT /api/reservations/:id` : modifier une réservation (dates, bateau, statut…)
+- `DELETE /api/reservations/:id` : supprimer/canceler une réservation
 
 ## 🔐 Authentification
 
-(L'authentification JWT sera implémentée dans le Milestone 3)
+- Enregistrez un utilisateur via `POST /api/users/register` ou utilisez un compte existant.
+- Connectez-vous avec `POST /api/users/login` pour recevoir un token JWT.
+- Ajoutez le header `Authorization: Bearer <votre_token>` pour toutes les routes protégées.
+- Les rôles disponibles sont `user` (par défaut) et `admin`. Seuls les admins peuvent gérer les utilisateurs et les catways.
+- Le token expire selon la variable `JWT_EXPIRE` (par défaut `7d`). Assurez-vous que `JWT_SECRET` est défini dans votre `.env`.
 
 ## 📄 License
 
