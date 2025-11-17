@@ -6,6 +6,8 @@ const userRoutes = require("./routes/userRoutes");
 const catwayRoutes = require("./routes/catwayRoutes");
 const reservationRoutes = require("./routes/reservationRoutes");
 const errorHandler = require("./middleware/errorHandler");
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./config/swagger");
 
 const path = require("path");
 
@@ -26,6 +28,9 @@ connectDB();
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
+
+// Documentation Swagger
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Routes API
 app.use("/api/users", userRoutes);
