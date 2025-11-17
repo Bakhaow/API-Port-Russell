@@ -2,6 +2,10 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const connectDB = require("./config/database");
+const userRoutes = require("./routes/userRoutes");
+const catwayRoutes = require("./routes/catwayRoutes");
+const reservationRoutes = require("./routes/reservationRoutes");
+const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 
@@ -22,19 +26,13 @@ app.get("/", (req, res) => {
   });
 });
 
-// Routes API (à implémenter dans les prochains milestones)
-// app.use('/api/users', require('./routes/users'));
-// app.use('/api/catways', require('./routes/catways'));
-// app.use('/api/reservations', require('./routes/reservations'));
+// Routes API
+app.use("/api/users", userRoutes);
+app.use("/api/catways", catwayRoutes);
+app.use("/api/reservations", reservationRoutes);
 
 // Gestion des erreurs
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({
-    message: "Something went wrong!",
-    error: process.env.NODE_ENV === "development" ? err.message : {},
-  });
-});
+app.use(errorHandler);
 
 // Port
 const PORT = process.env.PORT || 3000;
