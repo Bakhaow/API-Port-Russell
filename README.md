@@ -86,6 +86,12 @@ npm start
 
 Le serveur sera accessible sur `http://localhost:3000`
 
+### Interface Web
+
+Une fois le serveur démarré, vous pouvez accéder à l'interface web :
+- **Page d'accueil** : `http://localhost:3000/` - Connexion, inscription et documentation API
+- **Tableau de bord** : `http://localhost:3000/dashboard.html` - Gestion des catways et réservations (nécessite une connexion)
+
 ### Import des données initiales
 
 Après avoir configuré votre connexion MongoDB, vous pouvez importer les données initiales (catways et réservations) :
@@ -109,6 +115,11 @@ api/
 ├── controllers/     # Contrôleurs (logique métier)
 ├── middleware/      # Middlewares (auth, validation, etc.)
 ├── models/          # Modèles Mongoose (User, Catway, Reservation)
+├── public/          # Frontend (HTML, CSS, JS)
+│   ├── css/        # Styles
+│   ├── js/         # Scripts JavaScript
+│   ├── index.html  # Page d'accueil
+│   └── dashboard.html # Tableau de bord
 ├── routes/          # Routes API
 ├── scripts/         # Scripts utilitaires (import de données, etc.)
 ├── index.js         # Point d'entrée de l'application
@@ -135,11 +146,11 @@ api/
 - [x] Mettre en place l'authentification JWT
 - [x] Ajouter les middlewares de protection des routes
 
-### 🎨 Milestone 4 : Frontend simple
+### ✅ Milestone 4 : Frontend simple
 
-- [ ] Créer la page d'accueil avec connexion et documentation API
-- [ ] Développer le tableau de bord avec affichage des données et formulaires CRUD
-- [ ] Ajouter la déconnexion
+- [x] Créer la page d'accueil avec connexion et documentation API
+- [x] Développer le tableau de bord avec affichage des données et formulaires CRUD
+- [x] Ajouter la déconnexion
 
 ### 📚 Milestone 5 : Documentation et versionnage
 

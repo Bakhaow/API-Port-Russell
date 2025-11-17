@@ -7,6 +7,8 @@ const catwayRoutes = require("./routes/catwayRoutes");
 const reservationRoutes = require("./routes/reservationRoutes");
 const errorHandler = require("./middleware/errorHandler");
 
+const path = require("path");
+
 const app = express();
 
 // Middleware
@@ -14,16 +16,15 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Servir les fichiers statiques (frontend)
+app.use(express.static(path.join(__dirname, "public")));
+
 // Connexion à MongoDB
 connectDB();
 
 // Routes de base
 app.get("/", (req, res) => {
-  res.json({
-    message: "API Port Russell - Bienvenue!",
-    version: "1.0.0",
-    status: "OK",
-  });
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 // Routes API
