@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - Port Russell</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="dashboard-header">
+            <div>
+                <h1>🚢 Port Russell</h1>
+                <p class="user-info" id="user-info">Chargement...</p>
+            </div>
+            <button id="logout-btn" class="btn btn-secondary">Déconnexion</button>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="catways">Catways</button>
+            <button class="tab-btn" data-tab="reservations">Réservations</button>
+            <button class="tab-btn" data-tab="users" id="users-tab" style="display: none;">Utilisateurs</button>
+        </nav>
+
+        <main>
+            <!-- Onglet Catways -->
+            <section id="catways-tab" class="tab-content active">
+                <div class="section-header">
+                    <h2>Gestion des Catways</h2>
+                    <button id="add-catway-btn" class="btn btn-primary" style="display: none;">+ Ajouter un catway</button>
+                </div>
+
+                <!-- Filtres -->
+                <div class="filters">
+                    <select id="catway-type-filter">
+                        <option value="">Tous les types</option>
+                        <option value="short">Short</option>
+                        <option value="long">Long</option>
+                    </select>
+                    <select id="catway-available-filter">
+                        <option value="">Tous</option>
+                        <option value="true">Disponibles</option>
+                        <option value="false">Non disponibles</option>
+                    </select>
+                    <button id="apply-filters" class="btn btn-secondary">Filtrer</button>
+                </div>
+
+                <!-- Liste des catways -->
+                <div id="catways-list" class="data-grid">
+                    <p>Chargement...</p>
+                </div>
+
+                <!-- Formulaire d'ajout/modification catway -->
+                <div id="catway-form-modal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h3 id="catway-form-title">Ajouter un catway</h3>
+                        <form id="catway-form">
+                            <input type="hidden" id="catway-id">
+                            <div class="form-group">
+                                <label for="catway-number">Numéro</label>
+                                <input type="number" id="catway-number" required min="1">
+                            </div>
+                            <div class="form-group">
+                                <label for="catway-type">Type</label>
+                                <select id="catway-type" required>
+                                    <option value="short">Short</option>
+                                    <option value="long">Long</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="catway-state">État</label>
+                                <textarea id="catway-state" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="catway-available">Disponible</label>
+                                <input type="checkbox" id="catway-available">
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                <button type="button" class="btn btn-secondary" id="cancel-catway">Annuler</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Onglet Réservations -->
+            <section id="reservations-tab" class="tab-content">
+                <div class="section-header">
+                    <h2>Gestion des Réservations</h2>
+                    <button id="add-reservation-btn" class="btn btn-primary">+ Nouvelle réservation</button>
+                </div>
+
+                <!-- Liste des réservations -->
+                <div id="reservations-list" class="data-grid">
+                    <p>Chargement...</p>
+                </div>
+
+                <!-- Formulaire d'ajout/modification réservation -->
+                <div id="reservation-form-modal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h3 id="reservation-form-title">Nouvelle réservation</h3>
+                        <form id="reservation-form">
+                            <input type="hidden" id="reservation-id">
+                            <div class="form-group">
+                                <label for="reservation-catway">Numéro de catway</label>
+                                <input type="number" id="reservation-catway" required min="1">
+                            </div>
+                            <div class="form-group">
+                                <label for="reservation-client">Nom du client</label>
+                                <input type="text" id="reservation-client" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservation-boat">Nom du bateau</label>
+                                <input type="text" id="reservation-boat" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservation-start">Date de début</label>
+                                <input type="datetime-local" id="reservation-start" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservation-end">Date de fin</label>
+                                <input type="datetime-local" id="reservation-end" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservation-status">Statut</label>
+                                <select id="reservation-status">
+                                    <option value="active">Active</option>
+                                    <option value="completed">Terminée</option>
+                                    <option value="cancelled">Annulée</option>
+                                </select>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                <button type="button" class="btn btn-secondary" id="cancel-reservation">Annuler</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Onglet Utilisateurs (Admin uniquement) -->
+            <section id="users-tab" class="tab-content">
+                <div class="section-header">
+                    <h2>Gestion des Utilisateurs</h2>
+                </div>
+                <div id="users-list" class="data-grid">
+                    <p>Chargement...</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>
+
