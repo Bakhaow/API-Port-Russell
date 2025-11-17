@@ -91,6 +91,7 @@ Le serveur sera accessible sur `http://localhost:3000`
 Une fois le serveur démarré, vous pouvez accéder à l'interface web :
 - **Page d'accueil** : `http://localhost:3000/` - Connexion, inscription et documentation API
 - **Tableau de bord** : `http://localhost:3000/dashboard.html` - Gestion des catways et réservations (nécessite une connexion)
+- **Documentation Swagger** : `http://localhost:3000/api-docs` - Documentation interactive de l'API avec possibilité de tester les endpoints
 
 ### Import des données initiales
 
@@ -152,9 +153,9 @@ api/
 - [x] Développer le tableau de bord avec affichage des données et formulaires CRUD
 - [x] Ajouter la déconnexion
 
-### 📚 Milestone 5 : Documentation et versionnage
+### ✅ Milestone 5 : Documentation et versionnage
 
-- [ ] Documenter l'API (ex : Swagger)
+- [x] Documenter l'API (ex : Swagger)
 - [x] Initialiser le dépôt GitHub, ajouter README, .gitignore
 - [x] Valider la structure et pousser le code
 
