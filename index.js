@@ -6,10 +6,17 @@ const userRoutes = require("./routes/userRoutes");
 const catwayRoutes = require("./routes/catwayRoutes");
 const reservationRoutes = require("./routes/reservationRoutes");
 const errorHandler = require("./middleware/errorHandler");
-const swaggerUi = require("swagger-ui-express");
-const swaggerSpec = require("./config/swagger");
 
 const path = require("path");
+
+// Swagger (optionnel - seulement si les dépendances sont installées)
+let swaggerUi, swaggerSpec;
+try {
+  swaggerUi = require("swagger-ui-express");
+  swaggerSpec = require("./config/swagger");
+} catch (error) {
+  console.log("Swagger non disponible (dépendances non installées)");
+}
 
 const app = express();
 
@@ -29,8 +36,11 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// Documentation Swagger
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+// Documentation Swagger (si disponible)
+if (swaggerUi && swaggerSpec) {
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  console.log("📚 Documentation Swagger disponible sur /api-docs");
+}
 
 // Routes API
 app.use("/api/users", userRoutes);
